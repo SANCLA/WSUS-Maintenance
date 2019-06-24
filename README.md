@@ -19,6 +19,7 @@ It has been enhanced and further developed.
 2. Copy the contents of this repository to the newly created folder
 3. Create a new task in Windows Task Planner to run daily or weekly:
    * Run as SYSTEM user, run with highest privileges
+   * Stop the task if it rungs longer than: 8 hours
    * Program/script: powershell.exe
    * Add arguments: -ExecutionPolicy Bypass -Command "& 'C:\SANCLA-scripts\WSUS-Maintenance\Wsus-Maintenance.ps1' -Server [your-wsus-server] -Port 8530 -Update yes"
    * Replace -Server [your-wsus-server]  with your WSUS server, eg wsus01.domain.local
