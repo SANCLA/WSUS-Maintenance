@@ -18,11 +18,11 @@ It has been enhanced and further developed.
    C:\SANCLA-scripts\WSUS-Maintenance
 2. Copy the contents of this repository to the newly created folder
 3. Create a new task in Windows Task Planner to run daily or weekly:
-  * Run as SYSTEM user, run with highest privileges
-  * Program/script: powershell.exe
-  * Add arguments: -ExecutionPolicy Bypass -Command "& 'C:\SANCLA-scripts\WSUS-Maintenance\Wsus-Maintenance.ps1' -Server [your-wsus-server] -Port 8530 -L C:\SANCLA-scripts\WSUS-Maintenance\LOG"
-  * Replace -Server [your-wsus-server]  with your WSUS server, eg wsus01.domain.local
-  * Replace -Port 8530 with the used WSUS port. Default is 8530. Check IIS binding for the correct port...
+   * Run as SYSTEM user, run with highest privileges
+   * Program/script: powershell.exe
+   * Add arguments: -ExecutionPolicy Bypass -Command "& 'C:\SANCLA-scripts\WSUS-Maintenance\Wsus-Maintenance.ps1' -Server [your-wsus-server] -Port 8530 -L C:\SANCLA-scripts\WSUS-Maintenance\LOG"
+   * Replace -Server [your-wsus-server]  with your WSUS server, eg wsus01.domain.local
+   * Replace -Port 8530 with the used WSUS port. Default is 8530. Check IIS binding for the correct port...
 
 # Credits
 * https://gallery.technet.microsoft.com/scriptcenter/WSUS-Maintenance-w-logging-d507a15a
