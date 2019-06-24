@@ -42,13 +42,13 @@ When configuring the -Pwd switch enter the path and file name of this file.
 ## Configuration
 The table below shows all the command line options available with descriptions and example configurations.
  
-Command Line Switch | Mandatory	| Description | Example
---- | --- | --- | ---
--Server | Yes | The WSUS server that should be cleaned.	| wsus01.domain.local
--Port | Yes | The port that the WSUS service is running on. | 8530
--L | No	| Location to store the optional log file. The name of the log file is generated automatically.	| C:\foo
--SendTo	| No | The email address to send the log file to. | me@contoso.com
--From | No* | The email address that the log file should be sent from. | noreply@contoso.com
+Command Line Switch | Mandatory	| Description | Example  
+--- | --- | --- | ---  
+-Server | Yes | The WSUS server that should be cleaned.	| wsus01.domain.local  
+-Port | Yes | The port that the WSUS service is running on. | 8530  
+-L | No	| Location to store the optional log file. The name of the log file is generated automatically.	| C:\foo  
+-SendTo	| No | The email address to send the log file to. | me@contoso.com  
+-From | No* | The email address that the log file should be sent from. | noreply@contoso.com  
  
 
 \* This switch isn’t mandatory but is required if you wish to email the log file.
