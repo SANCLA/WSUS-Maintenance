@@ -20,9 +20,6 @@ Param(
     $SmtpPwd,
     [switch]$UseSsl)
 
-$UpdateFromRepository = "no"
-
-
 $LogFile = "Wsus-Maintenance.log"
 $Log = "C:\SANCLA-scripts\WSUS-Maintenance\LOG\$LogFile"
 
@@ -37,18 +34,16 @@ Add-Content -Path $Log -Value "****************************************"
 Add-Content -Path $Log -Value "$(Get-Date -Format G) Log started"
 Add-Content -Path $Log -Value ""
 
-If ($UpdateFromRepository)
-{
-	If ($UpdateFromRepository -eq "no") {
+If ($UpdateFromRepository -eq "no") {
 		Add-Content -Path $Log -Value "Updates switched off, skipping updates..."
-	}else{
+}else{
 		Add-Content -Path $Log -Value "Updating from repository..."
 		$source = "https://raw.githubusercontent.com/SANCLA/WSUS-Maintenance/master/Wsus-Maintenance.ps1"
 		$destination = "c:\SANCLA-scripts\WSUS-Maintenance\Wsus-Maintenance.ps1"
 		Write-Host "Updating file $destination ..."
 		Invoke-WebRequest $source -OutFile $destination
-	}
 }
+
 
 Function WsusMaintCmd
 {
@@ -56,22 +51,22 @@ Function WsusMaintCmd
 	{
 		Add-Content -Path $Log -Value ""
         Add-Content -Path $Log -Value "WSUS 1 / 6: Clean Obsolete Computers..."
-        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -CleanupObsoleteComputers
+        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -CleanupObsoleteComputers | Out-File -Append $Log -Encoding ASCII
         Add-Content -Path $Log -Value ""
         Add-Content -Path $Log -Value "WSUS 2 / 6: Clean Obsolete Updates..."
-        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -CleanupObsoleteUpdates
+        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -CleanupObsoleteUpdates | Out-File -Append $Log -Encoding ASCII
         Add-Content -Path $Log -Value ""
         Add-Content -Path $Log -Value "WSUS 3 / 6: Clean Unneeded Content Files..."
-        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -CleanupUnneededContentFiles
+        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -CleanupUnneededContentFiles | Out-File -Append $Log -Encoding ASCII
         Add-Content -Path $Log -Value ""
         Add-Content -Path $Log -Value "WSUS 4 / 6: Compress Updates..."
-        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -CompressUpdates
+        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -CompressUpdates | Out-File -Append $Log -Encoding ASCII
         Add-Content -Path $Log -Value ""
         Add-Content -Path $Log -Value "WSUS 5 / 6: Decline Expired Updates..."
-        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -DeclineExpiredUpdates
+        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -DeclineExpiredUpdates | Out-File -Append $Log -Encoding ASCII
         Add-Content -Path $Log -Value ""
         Add-Content -Path $Log -Value "WSUS 6 / 6: Decline Superseded Updates..."
-        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -DeclineSupersededUpdates
+        Get-WsusServer -Name $WsusServer -PortNumber $WsusPort | Invoke-WsusServerCleanup -DeclineSupersededUpdates | Out-File -Append $Log -Encoding ASCII
 	}
 	Catch
 	{
@@ -138,3 +133,6 @@ $GetSvc = Get-Service -Name $SvcName
             Send-MailMessage -To $MailTo -From $MailFrom -Subject $MailSubject -Body $MailBody -SmtpServer $SmtpServer
         }
     }
+
+
+## End
