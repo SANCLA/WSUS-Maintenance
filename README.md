@@ -20,7 +20,7 @@ It has been enhanced and further developed.
 3. Create a new task in Windows Task Planner to run daily or weekly:
    * Run as SYSTEM user, run with highest privileges
    * Program/script: powershell.exe
-   * Add arguments: -ExecutionPolicy Bypass -Command "& 'C:\SANCLA-scripts\WSUS-Maintenance\Wsus-Maintenance.ps1' -Server [your-wsus-server] -Port 8530 -L C:\SANCLA-scripts\WSUS-Maintenance\LOG"
+   * Add arguments: -ExecutionPolicy Bypass -Command "& 'C:\SANCLA-scripts\WSUS-Maintenance\Wsus-Maintenance.ps1' -Server [your-wsus-server] -Port 8530 -Update yes"
    * Replace -Server [your-wsus-server]  with your WSUS server, eg wsus01.domain.local
    * Replace -Port 8530 with the used WSUS port. Default is 8530. Check IIS binding for the correct port...
 
@@ -46,7 +46,7 @@ The table below shows all the command line options available with descriptions a
 | --- | --- | --- | --- |
 | -Server | Yes | The WSUS server that should be cleaned. | wsus01.domain.local |
 | -Port | Yes | The port that the WSUS service is running on. | 8530 |
-| -L | No	| Location to store the optional log file. The name of the log file is generated automatically.	| C:\foo |
+| -Update | Yes | If the script will automatically update. Default will update unless included. | no |
 | -SendTo	| No | The email address to send the log file to. | me@contoso.com |
 | -From | No* | The email address that the log file should be sent from. | noreply@contoso.com |
 
