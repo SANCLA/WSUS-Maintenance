@@ -28,28 +28,28 @@ It has been enhanced and further developed.
 * https://gallery.technet.microsoft.com/scriptcenter/WSUS-Maintenance-w-logging-d507a15a
 
 # Documentation
- 
+Â 
 ## Generating A Password File
 The password used for SMTP server authentication must be in an encrypted text file. To generate the password file, run the following command in PowerShell, on the computer that is going to run the script and logged in with the user that will be running the script. When you run the command you will be prompted for a username and password. Enter the username and password you want to use to authenticate to your SMTP server.  
-Please note: This is only required if you need to authenticate to the SMTP server when send the log via e-mail.  
+Please note:Â This is only required if you need to authenticate to the SMTP server when send the log via e-mail.  
 
 1. $creds = Get-Credential
 2. $creds.Password | ConvertFrom-SecureString | Set-Content c:\scripts\ps-script-pwd.txt
 
 After running the commands, you will have a text file containing the encrypted password.  
 When configuring the -Pwd switch enter the path and file name of this file.
- 
+Â 
 ## Configuration
 The table below shows all the command line options available with descriptions and example configurations.
- 
-Command Line Switch | Mandatory	| Description | Example  
---- | --- | --- | ---  
--Server | Yes | The WSUS server that should be cleaned.	| wsus01.domain.local  
--Port | Yes | The port that the WSUS service is running on. | 8530  
--L | No	| Location to store the optional log file. The name of the log file is generated automatically.	| C:\foo  
--SendTo	| No | The email address to send the log file to. | me@contoso.com  
--From | No* | The email address that the log file should be sent from. | noreply@contoso.com  
- 
 
-\* This switch isn’t mandatory but is required if you wish to email the log file.
- 
+| Command Line Switch | Mandatory | Description | Example |
+| --- | --- | --- | --- |
+| -Server | Yes | The WSUS server that should be cleaned. | wsus01.domain.local |
+| -Port | Yes | The port that the WSUS service is running on. | 8530 |
+| -L | No	| Location to store the optional log file. The name of the log file is generated automatically.	| C:\foo |
+| -SendTo	| No | The email address to send the log file to. | me@contoso.com |
+| -From | No* | The email address that the log file should be sent from. | noreply@contoso.com |
+Â 
+
+\* This switch isnâ€™t mandatory but is required if you wish to email the log file.
+Â 
