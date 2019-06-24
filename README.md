@@ -1,4 +1,4 @@
-# WSUS-Maintenace
+# WSUS-Maintenance
 WSUS configure and maintain documentation/solution
 
 The script is an adaptation of the original script by Mike Galvin.
