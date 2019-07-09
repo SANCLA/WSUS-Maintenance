@@ -44,5 +44,5 @@ Add-Content -Path $Log -Value "Downloading latest version from the repository"
 Add-Content -Path $Log -Value "Starting the WSUS Cleanup script"
 . “C:\SANCLA-scripts\WSUS-Maintenance\include\WsusServerCleanup.ps1”
 
-# Starting WSUS Database maintenance
-. “C:\SANCLA-scripts\WSUS-Maintenance\include\Invoke-WSUSDBMaintenance.ps1”
+# Starting WSUS Database maintenance (under development)
+#. “C:\SANCLA-scripts\WSUS-Maintenance\include\Invoke-WSUSDBMaintenance.ps1”
