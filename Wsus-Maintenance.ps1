@@ -93,7 +93,22 @@ $GetSvc = Get-Service -Name $SvcName
     Else
     {
         Add-Content -Path $Log -Value "Error: WSUS Service is not running!"
-        Write-Host "Error: WSUS Service is not running!"
+        Add-Content -Path $Log -Value "Attempting to reset WSUS..."
+        Add-Content -Path $Log -Value "Stopping the WSUS service..."
+        Stop-Service wsusservice
+        Start-Sleep -s 60
+        Add-Content -Path $Log -Value "Starting the WSUS service..."
+        Start-Service wsusservice
+        Start-Sleep -s 60
+        Add-Content -Path $Log -Value "Checking if WSUS is running and kick-start the script (or exit and die)..."
+        If ($GetSvc.Status -eq "Running")
+            {
+                Add-Content -Path $Log -Value "WSUS service seems to be running again, starting script!"
+                WsusMaintCmd
+            }else{
+                Add-Content -Path $Log -Value "WSUS service still not running, giving up now..."
+            }
+
     }
 
  
