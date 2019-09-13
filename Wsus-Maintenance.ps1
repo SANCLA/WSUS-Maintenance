@@ -41,6 +41,7 @@ If ($UpdateFromRepository -eq "no") {
 		$source = "https://raw.githubusercontent.com/SANCLA/WSUS-Maintenance/master/Wsus-Maintenance.ps1"
 		$destination = "c:\SANCLA-scripts\WSUS-Maintenance\Wsus-Maintenance.ps1"
 		Write-Host "Updating file $destination ..."
+		Add-Content -Path $Log -Value "Updating file $destination ..."
 		Invoke-WebRequest $source -OutFile $destination
 }
 
